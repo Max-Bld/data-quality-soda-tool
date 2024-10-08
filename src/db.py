@@ -1,8 +1,16 @@
 import psycopg2
 from soda_pandas import j
+from os import getcwd
+from pathlib import Path
+import yaml
+
+parent_path = Path(getcwd()).parent.absolute()
+
+with open(f"{parent_path}/config/variables.yaml") as f:
+    psql_vars = yaml.safe_load(f)['postgresql']
 
 conn = psycopg2.connect(
-    database="data_quality", user='postgres', password='secret', host='127.0.0.1', port= '5432'
+    database=psql_vars['database'], user=psql_vars['user'], password=psql_vars['password'], host=psql_vars['host'], port=psql_vars['port']
 )
 conn.autocommit = True
 cursor = conn.cursor()

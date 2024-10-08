@@ -3,9 +3,10 @@ import pandas as pd
 import json
 from soda.scan import Scan
 from http_request import response
-from functions import compute_completeness, get_values
+from functions import get_values
 from os import getcwd
 from pathlib import Path
+import yaml
 
 data = response
 
@@ -22,14 +23,17 @@ df = pd.DataFrame.from_dict(results)
 
 ## Soda
 
+with open(f"{parent_path}/config/variables.yaml") as f:
+    soda_vars = yaml.safe_load(f)['soda']
+
 scan = Scan()
 
 # add Pandas dataframe to scan and assign a dataset name to refer from checks.yaml
-scan.add_pandas_dataframe(dataset_name="restauration", pandas_df=df, data_source_name="apidae")
+scan.add_pandas_dataframe(dataset_name=soda_vars['dataset_name'], pandas_df=df, data_source_name=soda_vars['data_source_name'])
 
 # Set the scan definition name and default data source to use
-scan.set_scan_definition_name("test")
-scan.set_data_source_name("apidae")
+scan.set_scan_definition_name(soda_vars['scan_definition_name'])
+scan.set_data_source_name(soda_vars['data_source_name'])
 
 # Add configuration YAML file
 # You do not need connection to a data source; you must have a connection to Soda Cloud
