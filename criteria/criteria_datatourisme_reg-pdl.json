@@ -1,0 +1,23 @@
+{
+  "type": [
+    "Categories_de_POI"
+  ],
+  "nom": [
+    "Nom_du_POI"
+  ],
+  "adresse1": [
+    "Adresse_postale"
+  ],
+  "codePostal": [
+    "Code_postal_et_commune"
+  ],
+  "commune": [
+    "Code_postal_et_commune"
+  ],
+  "geolocalisation": [
+    "Latitude"
+  ],
+  "sous_type_objet": [
+    "Description"
+  ]
+}

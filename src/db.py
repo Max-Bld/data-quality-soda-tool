@@ -15,7 +15,7 @@ conn = psycopg2.connect(
 conn.autocommit = True
 cursor = conn.cursor()
 
-cursor.execute(f'''INSERT INTO soda_results(results) VALUES ('{j}')''')
+cursor.execute(f'''INSERT INTO {psql_vars['table']}({psql_vars['column']}) VALUES ('{j}')''')
 
 cursor.close()
 conn.close()

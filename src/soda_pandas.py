@@ -7,24 +7,52 @@ from functions import get_values
 from os import getcwd
 from pathlib import Path
 import yaml
+import io
 
-data = response
+## vars
 
 parent_path = Path(getcwd()).parent.absolute()
 
-with open(f'{parent_path}/data/criteria.json') as json_file:
-    criteria = json.load(json_file)
-
-restauration = data['objetsTouristiques']
-
-results = get_values(restauration, criteria)
-
-df = pd.DataFrame.from_dict(results)
-
-## Soda
-
+with open(f"{parent_path}/config/variables.yaml") as f:
+    backend_vars = yaml.safe_load(f)['backend']
 with open(f"{parent_path}/config/variables.yaml") as f:
     soda_vars = yaml.safe_load(f)['soda']
+with open(f"{parent_path}/config/variables.yaml") as f:
+    api_vars = yaml.safe_load(f)['api']
+
+## backend script
+
+data = response
+
+
+with open(f'{parent_path}/criteria/{backend_vars["criteria"]}') as json_file:
+    criteria = json.load(json_file)
+
+    # json
+
+if api_vars['content-type'] == "application/json":
+
+    data = data['objetsTouristiques']
+    results = get_values(data, criteria)
+    df = pd.DataFrame.from_dict(results)
+
+    # csv
+
+elif api_vars['content-type'] == "text/csv":
+
+    if api_vars['apiName'] == "local":
+        df = pd.read_csv(f'{parent_path}/data/{api_vars["file"]}')
+        print('yay')
+    else:
+        df = pd.read_csv(io.StringIO(data.decode('utf-8')))
+
+    for n in criteria:
+        df.rename(columns={criteria[n][0]: n}, inplace=True)
+
+print(df.head)
+print(df.columns)
+print(df.iloc[0])
+## Soda
 
 scan = Scan()
 
