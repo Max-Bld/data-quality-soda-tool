@@ -1,0 +1,11 @@
+checks for restauration:
+    - row_count:
+        fail: when = 0
+        name: Check if there are rows in the dataset.
+    - duplicate_count(nom):
+        warn: when > 0
+        fail: when >= 10
+        name: Check if there are duplicate POI names.
+    - missing_percent(geolocalisation):
+        warn: when > 3
+        fail: when > 25
