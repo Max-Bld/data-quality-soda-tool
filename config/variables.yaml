@@ -1,0 +1,17 @@
+postgresql:
+  database: "data_quality"
+  user: "postgres"
+  password: "secret"
+  host: "127.0.0.1"
+  port: "5432"
+api:
+  url: "https://api.apidae-tourisme.cooking/api/v002/recherche/list-objets-touristiques"
+  apiKey: "8uEnYKe1"
+  projectId: "3628"
+  searchId: "69700"
+  count: "20"
+  typeObjet: "RESTAURATION"
+soda:
+  dataset_name: "restauration"
+  data_source_name: "apidae"
+  scan_definition_name: "test"
