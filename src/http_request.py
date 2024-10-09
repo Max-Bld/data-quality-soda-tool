@@ -28,10 +28,14 @@ if api_vars['apiName'] == 'apidae':
 elif api_vars['apiName'] == 'datatourisme':
     url = api_vars['url']
 
+    print(f"HTTP GET to {api_vars['apiName']}: {api_vars['url']}")
+
     response = requests.get(url)
     response = response.content
 
 elif api_vars['apiName'] == 'local':
+
+    print(f"Fetching {api_vars['file']} from {api_vars['apiName']}")
 
     with open(f'{parent_path}/data/{api_vars["file"]}') as f:
         response = f.read()

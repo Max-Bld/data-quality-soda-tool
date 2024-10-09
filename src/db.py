@@ -15,12 +15,12 @@ conn = psycopg2.connect(
 conn.autocommit = True
 cursor = conn.cursor()
 
-print("Starting Insert into PostgreSQL database.")
+print("Starting INSERT into PostgresSQL database:")
 
 print(f'''INSERT INTO {psql_vars['table']}({psql_vars['column']}) VALUES ('{j}')''')
 cursor.execute(f'''INSERT INTO {psql_vars['table']}({psql_vars['column']}) VALUES ('{j}')''')
 
-print('Insert in PostgreSQL database finished.')
+print('Insert in PostgresSQL database finished.')
 
 cursor.close()
 conn.close()
