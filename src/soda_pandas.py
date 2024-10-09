@@ -42,7 +42,7 @@ elif api_vars['content-type'] == "text/csv":
 
     if api_vars['apiName'] == "local":
         df = pd.read_csv(f'{parent_path}/data/{api_vars["file"]}')
-        print('yay')
+
     else:
         df = pd.read_csv(io.StringIO(data.decode('utf-8')))
 
@@ -50,8 +50,6 @@ elif api_vars['content-type'] == "text/csv":
         df.rename(columns={criteria[n][0]: n}, inplace=True)
 
 print(df.head)
-print(df.columns)
-print(df.iloc[0])
 ## Soda
 
 scan = Scan()

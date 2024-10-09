@@ -17,6 +17,8 @@ if api_vars['apiName'] == 'apidae':
     apiKey = api_vars['apiKey']
     typeObjet = api_vars['typeObjet']
 
+    print(f"HTTP GET to {api_vars['apiName']}: {api_vars['url']}")
+
     query = f'"projetId":"{projectId}","apiKey":"{apiKey}","selectionIds":[{searchId}],"criteresQuery":"type:{typeObjet}","count":"{count}"'
     url = f'{url}?query=' + '{' + query + '}'
 
