@@ -45,10 +45,11 @@ elif api_vars['content-type'] == "text/csv":
         df = dd.read_csv(f'{parent_path}/data/{api_vars["file"]}')
 
     else:
-        df = dd.read_csv(io.StringIO(data.decode('utf-8')))
+        df = pd.read_csv(io.StringIO(data.decode('utf-8')))
+        df = dd.from_pandas(df, npartitions=4)
 
     for n in criteria:
-        df.rename(columns={criteria[n][0]: n}, inplace=True)
+        df = df.rename(columns={criteria[n][0]: n})
 
 ## Soda
 print("Starting Soda Scan.")

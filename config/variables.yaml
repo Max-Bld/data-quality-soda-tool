@@ -13,11 +13,11 @@ api:
   typeObjet: "RESTAURATION"
   content-type: "application/json"
 
-## DATAtourisme
-#api:
-#  apiName: "datatourisme"
-#  url: "https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490"
-#  content-type: "text/csv"
+# DATAtourisme
+api:
+  apiName: "datatourisme"
+  url: "https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490"
+  content-type: "text/csv"
 
 #api:
 #  apiName: "local"
@@ -38,13 +38,13 @@ postgresql:
   port: "5432"
 
 backend:
-   criteria: "criteria_apidae_restauration.json" # for apidae api
-#  criteria: "criteria_datatourisme_reg-pdl.json"
+#   criteria: "criteria_apidae_restauration.json" # for apidae api
+  criteria: "criteria_datatourisme_reg-pdl.json"
 
 soda:
-  dataset_name: "restauration"
-  data_source_name: "apidae"
-  scan_definition_name: "niveau basique"
-#  dataset_name: "reg-pdl"
-#  data_source_name: "datatourisme"
-#  scan_definition_name: "niveau_basique"
+#  dataset_name: "restauration"
+#  data_source_name: "apidae"
+#  scan_definition_name: "niveau basique"
+  dataset_name: "reg_pdl"
+  data_source_name: "datatourisme"
+  scan_definition_name: "niveau_basique"
