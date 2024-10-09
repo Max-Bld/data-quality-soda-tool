@@ -1,5 +1,6 @@
 ##
 import pandas as pd
+import dask.dataframe as dd
 import json
 from soda.scan import Scan
 from http_request import response
@@ -34,36 +35,32 @@ if api_vars['content-type'] == "application/json":
 
     data = data['objetsTouristiques']
     results = get_values(data, criteria)
-    df = pd.DataFrame.from_dict(results)
+    df = dd.DataFrame.from_dict(results, npartitions=4)
 
     # csv
 
 elif api_vars['content-type'] == "text/csv":
 
     if api_vars['apiName'] == "local":
-        df = pd.read_csv(f'{parent_path}/data/{api_vars["file"]}')
+        df = dd.read_csv(f'{parent_path}/data/{api_vars["file"]}')
 
     else:
-        df = pd.read_csv(io.StringIO(data.decode('utf-8')))
+        df = dd.read_csv(io.StringIO(data.decode('utf-8')))
 
     for n in criteria:
         df.rename(columns={criteria[n][0]: n}, inplace=True)
 
-print(df.head)
 ## Soda
-
+print("Starting Soda Scan.")
 scan = Scan()
 
 # add Pandas dataframe to scan and assign a dataset name to refer from checks.yaml
-scan.add_pandas_dataframe(dataset_name=soda_vars['dataset_name'], pandas_df=df, data_source_name=soda_vars['data_source_name'])
+scan.add_dask_dataframe(dataset_name=soda_vars['dataset_name'], dask_df=df, data_source_name=soda_vars['data_source_name'])
 
 # Set the scan definition name and default data source to use
 scan.set_scan_definition_name(soda_vars['scan_definition_name'])
 scan.set_data_source_name(soda_vars['data_source_name'])
 
-# Add configuration YAML file
-# You do not need connection to a data source; you must have a connection to Soda Cloud
-scan.add_configuration_yaml_file(file_path=f"{parent_path}/config/configuration.yml")
 
 # Define checks in yaml format
 scan.add_sodacl_yaml_file(file_path=f"{parent_path}/config/checks.yml")
@@ -74,5 +71,6 @@ result = scan.get_scan_results()
 result['logs'][2]['message'] = result['logs'][2]['message'].replace("'", "")
 j = json.dumps(result)
 
+print("Soda Scan finished.")
 ## to Retool
 #r = requests.post('https://api.retool.com/v1/workflows/6721da9b-b325-4a06-b05f-83781bb5024d/startTrigger', headers = {"X-Workflow-Api-Key": "retool_wk_93464b978966477ba6a7b6eb77a1b0c7"}, data=j)
