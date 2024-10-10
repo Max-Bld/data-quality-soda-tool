@@ -1,5 +1,6 @@
 ##
 import pandas as pd
+import dask
 import dask.dataframe as dd
 import json
 from soda.scan import Scan
@@ -9,6 +10,9 @@ from os import getcwd
 from pathlib import Path
 import yaml
 import io
+
+dask.config.set({"dataframe.convert-string": False})
+
 
 ## vars
 
@@ -25,7 +29,6 @@ with open(f"{parent_path}/config/variables.yaml") as f:
 
 data = response
 
-
 with open(f'{parent_path}/criteria/{backend_vars["criteria"]}') as json_file:
     criteria = json.load(json_file)
 
@@ -35,18 +38,24 @@ if api_vars['content-type'] == "application/json":
 
     data = data['objetsTouristiques']
     results = get_values(data, criteria)
-    df = dd.DataFrame.from_dict(results, npartitions=4)
+    df = dd.DataFrame.from_dict(results, npartitions=4) # dask
+    # df = pd.DataFrame.from_dict(results) # pandas
 
     # csv
 
 elif api_vars['content-type'] == "text/csv":
 
+    cols = []
+    for n in criteria:
+        cols.append(criteria[n][0])
+
     if api_vars['apiName'] == "local":
-        df = dd.read_csv(f'{parent_path}/data/{api_vars["file"]}')
+        # df = pd.read_csv(f'{parent_path}/data/{api_vars["file"]}', usecols=cols) # pandas
+        df = dd.read_csv(f'{parent_path}/data/{api_vars["file"]}', usecols=cols) # dask
 
     else:
-        df = pd.read_csv(io.StringIO(data.decode('utf-8')))
-        df = dd.from_pandas(df, npartitions=4)
+        df = pd.read_csv(io.StringIO(data.decode('utf-8')), usecols=cols) # pandas
+        df = dd.from_pandas(df, npartitions=4) # dask
 
     for n in criteria:
         df = df.rename(columns={criteria[n][0]: n})
@@ -56,12 +65,12 @@ print("Starting Soda Scan.")
 scan = Scan()
 
 # add Pandas dataframe to scan and assign a dataset name to refer from checks.yaml
-scan.add_dask_dataframe(dataset_name=soda_vars['dataset_name'], dask_df=df, data_source_name=soda_vars['data_source_name'])
+# scan.add_pandas_dataframe(dataset_name=soda_vars['dataset_name'], pandas_df=df, data_source_name=soda_vars['data_source_name']) # pandas
+scan.add_dask_dataframe(dataset_name=soda_vars['dataset_name'], dask_df=df, data_source_name=soda_vars['data_source_name']) # dask
 
 # Set the scan definition name and default data source to use
 scan.set_scan_definition_name(soda_vars['scan_definition_name'])
 scan.set_data_source_name(soda_vars['data_source_name'])
-
 
 # Define checks in yaml format
 scan.add_sodacl_yaml_file(file_path=f"{parent_path}/config/checks.yml")
