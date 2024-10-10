@@ -18,11 +18,11 @@ dask.config.set({"dataframe.convert-string": False})
 
 parent_path = Path(getcwd()).parent.absolute()
 
-with open(f"{parent_path}/config/variables.yaml") as f:
+with open(f"{parent_path}/config/variables.yml") as f:
     backend_vars = yaml.safe_load(f)['backend']
-with open(f"{parent_path}/config/variables.yaml") as f:
+with open(f"{parent_path}/config/variables.yml") as f:
     soda_vars = yaml.safe_load(f)['soda']
-with open(f"{parent_path}/config/variables.yaml") as f:
+with open(f"{parent_path}/config/variables.yml") as f:
     api_vars = yaml.safe_load(f)['api']
 
 ## backend script

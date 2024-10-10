@@ -5,7 +5,7 @@ import yaml
 
 parent_path = Path(getcwd()).parent.absolute()
 
-with open(f"{parent_path}/config/variables.yaml") as f:
+with open(f"{parent_path}/config/variables.yml") as f:
     api_vars = yaml.safe_load(f)['api']
 
 if api_vars['apiName'] == 'apidae':

@@ -6,7 +6,7 @@ import yaml
 
 parent_path = Path(getcwd()).parent.absolute()
 
-with open(f"{parent_path}/config/variables.yaml") as f:
+with open(f"{parent_path}/config/variables.yml") as f:
     psql_vars = yaml.safe_load(f)['postgresql']
 
 conn = psycopg2.connect(
