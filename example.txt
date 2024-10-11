@@ -1,0 +1,25 @@
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data 'api:
+  apiName: "datatourisme"
+  url: "https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490"
+  content-type: "text/csv"
+
+postgresql:
+  database: "data_quality"
+  table: "soda_results"
+  column: "results"
+  user: "postgres"
+  password: "secret"
+  host: "0.0.0.0"
+  port: "5432"
+
+backend:
+  criteria: "criteria_datatourisme_reg-pdl.json"
+
+soda:
+  dataset_name: "reg_pdl"
+  data_source_name: "datatourisme"
+  scan_definition_name: "niveau_basique"
+' \
+  http://localhost:5000/post/variables
