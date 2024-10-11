@@ -15,20 +15,20 @@ with open(f"{parent_path}/config/configuration.yml") as f:
 
 @app.route('/')
 def welcome():
-    return '''Hi!<br><br>You first need to set the variables environment by sending the <b>variables.yml</b> file by sending a POST request to <a href="http://127.0.0.1:5000/post/variables">this address</a>.<br><br>
+    return f'''Hi!<br><br>You first need to set the variables environment by sending the <b>variables.yml</b> file by sending a POST request to <a href="http://127.0.0.1:5000/post/variables">this address</a>.<br><br>
     Then, you need to define your soda checks in SodaCL by sending the <b>checks.yml</b> file by sending a POST request to <a href="http://127.0.0.1:5000/post/checks">this address</a>.<br><br>
     You can check if they have been correctly loaded by printing out:
-     <ul><li>the <a href="web_vars['url']/get/variables"><b>variables.yml</b></a></li> 
-     <li>the <a href="web_vars['url']/get/checks"><b>checks.yml</b></a></li></ul><br>
-    When these two files have been sent,  you can <a href="web_vars['url']/run/scan">run a Soda scan</a>.<br><br>
-    Finally, you can check the results of the latest Soda scan at <a href="web_vars['url']/get/results">this address</a>.<br><br><br>
+     <ul><li>the <a href="/get/variables"><b>variables.yml</b></a></li> 
+     <li>the <a href="/get/checks"><b>checks.yml</b></a></li></ul><br>
+    When these two files have been sent,  you can <a href="/run/scan">run a Soda scan</a>.<br><br>
+    Finally, you can check the results of the latest Soda scan at <a href="/get/results">this address</a>.<br><br><br>
     Have fun!'''
 
 @app.route('/run/scan', methods=['GET'])
 def run_soda_scan_results():
     import db
-    return '''Soda scan finished!<br><br>   
-    You can go back to the <a href="web_vars['url']/">home page</a> or go directly to the <a href="web_vars['url']/get/results">latest results page</a>.'''
+    return f'''Soda scan finished!<br><br>   
+    You can go back to the <a href="/">home page</a> or go directly to the <a href="/get/results">latest results page</a>.'''
 
 @app.route('/get/results', methods=['GET'])
 def last_results():
@@ -39,19 +39,19 @@ def last_results():
 def get_checks():
     with open(f'{parent_path}/config/checks.yml') as f:
         checks_file = f.read().replace("\n", "<br>")
-    return f'''<a href="web_vars['url']/">Go Back</a><br><br><b>SodaCL Checks:</b><br>{checks_file}'''
+    return f'''<a href="/">Go Back</a><br><br><b>SodaCL Checks:</b><br>{checks_file}'''
 
 @app.route('/get/configuration', methods=['GET'])
 def get_configuration():
     with open(f'{parent_path}/config/configuration.yml') as f:
         configuration_file = f.read().replace("\n", "<br>")
-    return f'''<a href="web_vars['url']/">Go Back</a><br><br><b>Configuration with Soda Cloud:</b><br>{configuration_file}'''
+    return f'''<a href="/">Go Back</a><br><br><b>Configuration with Soda Cloud:</b><br>{configuration_file}'''
 
 @app.route('/get/variables', methods=['GET'])
 def get_variables():
     with open(f'{parent_path}/config/variables.yml') as f:
         variables_file = f.read().replace("\n", "<br>")
-    return f'''<a href="web_vars['url']/">Go Back</a><br><br><b>Environment variables:</b><br>{variables_file}'''
+    return f'''<a href="/">Go Back</a><br><br><b>Environment variables:</b><br>{variables_file}'''
 
 @app.route('/post/checks', methods=['POST'])
 def post_soda_checks():
