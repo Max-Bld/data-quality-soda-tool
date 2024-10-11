@@ -2,3 +2,6 @@
 #  host: cloud.soda.io
 #  api_key_id: changeme
 #  api_key_secret: changeme
+
+railway:
+  url: "https://data-quality-soda-tool-production.up.railway.app/"
