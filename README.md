@@ -1,25 +1,6 @@
-PostgreSQL server is supposed to be started.
-
-Create virtual environment and activate it:
-
+Run:
 ```
-python3 -m venv venv
-source ./venv/bin/activate
+docker compose up --build
 ```
 
-Upgrade pip in your environment and install dependencies:
-
-```
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-Launch the app:
-
-```
-cd ./src
-
-python3 webapp.py
-```
-
-You can access it through your web browser to the address `http://localhost:5000`.
+Access the app at `http://localhost:5000`.
