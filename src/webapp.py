@@ -3,6 +3,7 @@ from flask import request, redirect
 from db_query import get_last_results
 from os import getcwd
 from pathlib import Path
+import yaml
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
