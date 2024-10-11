@@ -76,4 +76,5 @@ def post_soda_variables():
 
     return "Successfully loaded 'variables.yml' file."
 
-app.run()
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)
