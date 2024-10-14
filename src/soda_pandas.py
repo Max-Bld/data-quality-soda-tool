@@ -82,5 +82,3 @@ result['logs'][2]['message'] = result['logs'][2]['message'].replace("'", "")
 j = json.dumps(result)
 
 print("Soda Scan finished.")
-## to Retool
-#r = requests.post('https://api.retool.com/v1/workflows/6721da9b-b325-4a06-b05f-83781bb5024d/startTrigger', headers = {"X-Workflow-Api-Key": "retool_wk_93464b978966477ba6a7b6eb77a1b0c7"}, data=j)
