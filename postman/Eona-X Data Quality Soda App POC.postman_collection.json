@@ -1,53 +1,77 @@
 {
 	"info": {
-		"_postman_id": "2f49ffbc-ffa7-4559-b05f-f67b95af11ee",
+		"_postman_id": "ee13d9c0-87d5-48b5-8009-9bf78f0a1d88",
 		"name": "Eona-X Data Quality Soda App POC",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32248132"
 	},
 	"item": [
 		{
-			"name": "Run a Soda Scan",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get Last Results",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get Variables",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get Soda Checks",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Change the Variables (DATAtourisme)",
+			"name": "Change Variables (DATAtourisme)",
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "api:\n  apiName: \"datatourisme\"\n  url: \"https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490\"\n  content-type: \"text/csv\"\n\npostgresql:\n  database: \"data_quality\"\n  table: \"soda_results\"\n  column: \"results\"\n  user: \"postgres\"\n  password: \"secret\"\n  host: \"db\"\n  port: \"5432\"\n\nbackend:\n  criteria: \"criteria_datatourisme_reg-pdl.json\"\n\nsoda:  \n  dataset_name: \"reg_pdl\"\n  data_source_name: \"datatourisme\"\n  scan_definition_name: \"niveau_basique\" \n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.1.2.182:5000/post/variables",
+					"protocol": "http",
+					"host": [
+						"10",
+						"1",
+						"2",
+						"182"
+					],
+					"port": "5000",
+					"path": [
+						"post",
+						"variables"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Change the Variables (Apidae Cooking API)",
+			"name": "Change Soda Checks (DATAtourisme)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "checks for reg_pdl:\n  - row_count:\n      fail: when = 0\n      name: Check if there are rows in the dataset.\n  - duplicate_count(nom):\n      warn: when > 0\n      fail: when >= 10\n      name: Check if there are duplicate POI names.\n  - missing_percent(geolocalisation):\n      warn: when > 25\n      fail: when > 50\n      name: Check if geolocalisation is missing.",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.1.2.182:5000/post/checks",
+					"protocol": "http",
+					"host": [
+						"10",
+						"1",
+						"2",
+						"182"
+					],
+					"port": "5000",
+					"path": [
+						"post",
+						"checks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Variables (Apidae Cooking API)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -79,18 +103,90 @@
 			"response": []
 		},
 		{
-			"name": "Looser Checks (DATAtourisme)",
+			"name": "Change Soda Checks (Apidae Cooking API)",
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "checks for apidae_restauration:\n  - row_count:\n      fail: when = 0\n      name: Check if there are rows in the dataset.\n  - duplicate_count(nom):\n      warn: when > 0\n      fail: when >= 10\n      name: Check if there are duplicate POI names.\n  - missing_percent(geolocalisation):\n      warn: when > 3\n      fail: when > 25",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.1.2.182:5000/post/checks",
+					"protocol": "http",
+					"host": [
+						"10",
+						"1",
+						"2",
+						"182"
+					],
+					"port": "5000",
+					"path": [
+						"post",
+						"checks"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Stricter Checks (Apidae Cooking API)",
+			"name": "Get Variables",
 			"request": {
-				"method": "POST",
-				"header": []
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Soda Checks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run a Soda Scan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.1.2.182:5000/run/scan",
+					"protocol": "http",
+					"host": [
+						"10",
+						"1",
+						"2",
+						"182"
+					],
+					"port": "5000",
+					"path": [
+						"run",
+						"scan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Last Results",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		}
