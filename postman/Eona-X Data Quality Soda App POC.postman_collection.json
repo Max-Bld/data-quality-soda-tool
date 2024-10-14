@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "2f49ffbc-ffa7-4559-b05f-f67b95af11ee",
+		"name": "Eona-X Data Quality Soda App POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32248132"
+	},
+	"item": [
+		{
+			"name": "Run a Soda Scan",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Last Results",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Variables",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Soda Checks",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Change the Variables (DATAtourisme)",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Change the Variables (Apidae Cooking API)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "api:\n  apiName: \"apidae\"\n  url: \"https://api.apidae-tourisme.cooking/api/v002/recherche/list-objets-touristiques\"\n  projectId: \"3628\"\n  searchId: \"69700\"\n  count: \"20\"\n  apiKey: \"8uEnYKe1\"\n  typeObjet: \"RESTAURATION\"\n  content-type: \"application/json\"\n\npostgresql:\n  database: \"data_quality\"\n  table: \"soda_results\"\n  column: \"results\"\n  user: \"postgres\"\n  password: \"secret\"\n  host: \"db\"\n  port: \"5432\"\n\nbackend:\n  criteria: \"criteria_apidae_restauration.json\"\n\nsoda:\n  dataset_name: \"apidae_restauration\"\n  data_source_name: \"apidae\"\n  scan_definition_name: \"niveau_basique\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.1.2.182:5000/post/variables",
+					"protocol": "http",
+					"host": [
+						"10",
+						"1",
+						"2",
+						"182"
+					],
+					"port": "5000",
+					"path": [
+						"post",
+						"variables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Looser Checks (DATAtourisme)",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Stricter Checks (Apidae Cooking API)",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
