@@ -10,7 +10,6 @@ You can find a Postman Collection in the `/postman` folder.
 
 You can generate the OpenAPI documentation by doing the following commands:
 ```commandline
-pip install mkdocs-swagger-ui-tag
 cd mkdocs
 mkdocs serve
 ```

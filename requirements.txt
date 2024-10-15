@@ -73,3 +73,5 @@ Werkzeug==3.0.4
 wrapt==1.16.0
 zict==3.0.0
 zipp==3.20.2
+mkdocs
+mkdocs-swagger-ui-tag
