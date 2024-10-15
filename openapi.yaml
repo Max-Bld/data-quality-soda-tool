@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: data-quality-soda-tool
+  version: v1
+  description: REST API documentation for the Data Quality Soda Scan Tool
+servers:
+- url: http://10.1.2.182:5000/
+paths:
+  /:
+    get:
+      description: Welcome Page
+      responses:
+        "200":
+          description: Welcome page
+          content:
+            html:
+              example: "Welcome page"
+  /run/scan/:
+    get:
+      description: Run a Soda Scan.
+      responses:
+        "200":
+          description: Run a Soda Scan
+          content:
+            html:
+              example: "Scan done."
+  /get/results/:
+    get:
+      description: Get results from the last Soda Scan.
+      responses:
+        "200":
+          description: Get results from the last Soda Scan.
+          content:
+            application/json:
+              example: "{}"
+  /get/configuration/:
+    get:
+      description: Get current configuration file.
+      responses:
+        "200":
+          description: Get current configuration file.
+          content:
+            application/json:
+              example: "{}"
+  /get/variables/:
+    get:
+      description: Get current variables.
+      responses:
+        "200":
+          description: Get current variables.
+          content:
+            application/json:
+              example: "{}"
+  /get/checks/:
+    get:
+      description: Get current checks.
+      responses:
+        "200":
+          description: Get current checks.
+          content:
+            application/json:
+              example: "{}"
+  /post/variables/:
+    post:
+      description: Updates the variables.
+      requestBody:
+        content:
+          application/yaml:
+            example: ""
+      responses:
+        "200":
+          description: Updates the variables.
+          content:
+            application/json:
+              example: "{}"
+  /post/checks/:
+    post:
+      description: Updates the Soda checks.
+      requestBody:
+        content:
+          application/yaml:
+            example: ""
+      responses:
+        "200":
+          description: Updates the Soda Checks.
+          content:
+            application/json:
+              example: "{}"
