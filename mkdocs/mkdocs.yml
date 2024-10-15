@@ -6,3 +6,4 @@ theme: readthedocs
 plugins:
    - swagger-ui-tag:
         background: Transparent
+dev_addr: "0.0.0.0:8000"
