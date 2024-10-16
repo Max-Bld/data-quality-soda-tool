@@ -1,9 +1,10 @@
 openapi: 3.0.3
 info:
-  title: data-quality-soda-tool
+  title: Data Quality Soda Tool POC
   version: v1
-  description: REST API documentation for the Data Quality Soda Scan Tool
+  description: REST API documentation for the Data Quality Soda Scan Tool POC. This documentation is still under development.
 servers:
+- url: http://localhost:5000/
 - url: http://10.1.2.182:5000/
 paths:
   /:
