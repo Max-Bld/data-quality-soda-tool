@@ -4,8 +4,8 @@ info:
   version: v1
   description: REST API documentation for the Data Quality Soda Scan Tool POC. This documentation is still under development.
 servers:
-- url: http://localhost:5000/
-- url: http://10.1.2.182:5000/
+- url: http://localhost:5000
+- url: http://10.1.2.182:5000
 paths:
   /:
     get:
@@ -16,7 +16,7 @@ paths:
           content:
             html:
               example: "Hi, you can start a Soda scan by requesting this address."
-  /run/scan/:
+  /run/scan:
     get:
       description: Run a Soda Scan.
       responses:
@@ -25,7 +25,7 @@ paths:
           content:
             html:
               example: "Scan done."
-  /get/results/:
+  /get/results:
     get:
       description: Get results from the last Soda Scan.
       responses:
@@ -34,7 +34,7 @@ paths:
           content:
             application/json:
               example: "{}"
-  /get/configuration/:
+  /get/configuration:
     get:
       description: Get current configuration file.
       responses:
@@ -43,7 +43,7 @@ paths:
           content:
             application/json:
               example: "{}"
-  /get/variables/:
+  /get/variables:
     get:
       description: Get current variables.
       responses:
@@ -52,7 +52,7 @@ paths:
           content:
             application/json:
               example: "{}"
-  /get/checks/:
+  /get/checks:
     get:
       description: Get current checks.
       responses:
@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               example: "{}"
-  /post/variables/:
+  /post/variables:
     post:
       description: Updates the variables.
       requestBody:
@@ -74,7 +74,7 @@ paths:
           content:
             application/json:
               example: "{}"
-  /post/checks/:
+  /post/checks:
     post:
       description: Updates the Soda checks.
       requestBody:
