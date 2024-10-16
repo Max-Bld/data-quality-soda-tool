@@ -17,8 +17,10 @@ services:
       context: .
     ports:
       - 5000:5000
-  docs:
+  mkdocs:
     build:
-      context: .
+      dockerfile: ./mkdocs/Dockerfile
     ports:
       - 8000:8000
+    stdin_open: true
+    tty: true
