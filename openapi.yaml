@@ -6,6 +6,8 @@ info:
 servers:
 - url: http://localhost:5000
 - url: http://10.1.2.182:5000
+- url: http://0.0.0.0:5000
+- url: http://server:5000
 paths:
   /:
     get:
