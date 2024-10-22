@@ -27,7 +27,8 @@ def welcome():
 
 @app.route('/run/scan', methods=['GET'])
 def run_soda_scan_results():
-    import db
+    with open("db.py") as f:
+        exec(f.read())
     status = {"status": "success",
          "datetime": datetime.datetime.now()}
     return status

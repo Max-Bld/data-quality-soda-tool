@@ -1,44 +1,45 @@
-import requests
-from os import getcwd
-from pathlib import Path
-import yaml
+def get_response(api_vars):
+    import requests
+    from os import getcwd
+    from pathlib import Path
+    import yaml
 
-parent_path = Path(getcwd()).parent.absolute()
 
-with open(f"{parent_path}/config/variables.yml") as f:
-    api_vars = yaml.safe_load(f)['api']
 
-if api_vars['apiName'] == 'apidae':
 
-    url = api_vars['url']
-    projectId = api_vars['projectId']
-    searchId = api_vars['searchId']
-    count = api_vars['count']
-    apiKey = api_vars['apiKey']
-    typeObjet = api_vars['typeObjet']
+    if api_vars['apiName'] == 'apidae':
 
-    print(f"HTTP GET to {api_vars['apiName']}: {api_vars['url']}")
+        url = api_vars['url']
+        projectId = api_vars['projectId']
+        searchId = api_vars['searchId']
+        count = api_vars['count']
+        apiKey = api_vars['apiKey']
+        typeObjet = api_vars['typeObjet']
 
-    query = f'"projetId":"{projectId}","apiKey":"{apiKey}","selectionIds":[{searchId}],"criteresQuery":"type:{typeObjet}","count":"{count}"'
-    url = f'{url}?query=' + '{' + query + '}'
+        print(f"HTTP GET to {api_vars['apiName']}: {api_vars['url']}")
 
-    r = requests.get(url)
-    response = r.json()
+        query = f'"projetId":"{projectId}","apiKey":"{apiKey}","selectionIds":[{searchId}],"criteresQuery":"type:{typeObjet}","count":"{count}"'
+        url = f'{url}?query=' + '{' + query + '}'
 
-elif api_vars['apiName'] == 'datatourisme':
-    url = api_vars['url']
+        r = requests.get(url)
+        response = r.json()
 
-    print(f"HTTP GET to {api_vars['apiName']}: {api_vars['url']}")
+    elif api_vars['apiName'] == 'datatourisme':
+        url = api_vars['url']
 
-    response = requests.get(url)
-    response = response.content
+        print(f"HTTP GET to {api_vars['apiName']}: {api_vars['url']}")
 
-elif api_vars['apiName'] == 'local':
+        response = requests.get(url)
+        response = response.content
 
-    print(f"Fetching {api_vars['file']} from {api_vars['apiName']}")
+    elif api_vars['apiName'] == 'local':
 
-    with open(f'{parent_path}/data/{api_vars["file"]}') as f:
-        response = f.read()
+        print(f"Fetching {api_vars['file']} from {api_vars['apiName']}")
 
-else:
-    print('No API found.')
+        with open(f'{parent_path}/data/{api_vars["file"]}') as f:
+            response = f.read()
+
+    else:
+        print('No API found.')
+
+    return response
