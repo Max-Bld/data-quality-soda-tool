@@ -9,6 +9,7 @@ from functions import get_values
 from os import getcwd
 from pathlib import Path
 import yaml
+from flatten_json import flatten_preserve_lists
 import io
 
 dask.config.set({"dataframe.convert-string": False})
@@ -39,7 +40,12 @@ if api_vars['content-type'] == "application/json":
     data = data['objetsTouristiques']
     results = get_values(data, criteria)
     df = dd.DataFrame.from_dict(results, npartitions=4) # dask
-    # df = pd.DataFrame.from_dict(results) # pandas
+    # data = flatten_preserve_lists({"data":data})
+    # df = pd.DataFrame.from_dict(data) # pandas
+    print(df.columns)
+    print(len(df.columns))
+    print(df)
+    print(df['nom'])
 
     # csv
 

@@ -1,4 +1,16 @@
-checks for reg_pdl:
+#checks for reg_pdl:
+#  - row_count:
+#      fail: when = 0
+#      name: Check if there are rows in the dataset.
+#  - duplicate_count(nom):
+#      warn: when > 0
+#      fail: when >= 10
+#      name: duplicatenames
+#  - missing_percent(geolocalisation):
+#      warn: when > 3
+#      fail: when > 25
+#
+checks for restauration:
   - row_count:
       fail: when = 0
       name: Check if there are rows in the dataset.
@@ -7,18 +19,6 @@ checks for reg_pdl:
       fail: when >= 10
       name: Check if there are duplicate POI names.
   - missing_percent(geolocalisation):
-      warn: when > 3
-      fail: when > 25
-
-#checks for reg_pdl:
-#  - row_count:
-#      fail: when = 0
-#      name: Check if there are rows in the dataset.
-#  - duplicate_count(nom):
-#      warn: when > 0
-#      fail: when >= 10
-#      name: Check if there are duplicate POI names.
-#  - missing_percent(geolocalisation):
-#      warn: when > 25
-#      fail: when > 50
-#      name: Check if geolocalisation is missing.
+      warn: when > 25
+      fail: when > 50
+      name: Check if geolocalisation is missing.

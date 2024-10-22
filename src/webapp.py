@@ -6,7 +6,7 @@ from pathlib import Path
 import yaml
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 parent_path = Path(getcwd()).parent.absolute()
 

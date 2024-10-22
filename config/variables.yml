@@ -1,17 +1,17 @@
-api:
-  apiName: "datatourisme"
-  url: "https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490"
-  content-type: "text/csv"
-#
 #api:
-#  apiName: "apidae"
-#  url: "https://api.apidae-tourisme.cooking/api/v002/recherche/list-objets-touristiques"
-#  projectId: "3628"
-#  searchId: "69700"
-#  count: "20"
-#  apiKey: "8uEnYKe1"
-#  typeObjet: "RESTAURATION"
-#  content-type: "application/json"
+#  apiName: "datatourisme"
+#  url: "https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490"
+#  content-type: "text/csv"
+
+api:
+  apiName: "apidae"
+  url: "https://api.apidae-tourisme.cooking/api/v002/recherche/list-objets-touristiques"
+  projectId: "3628"
+  searchId: "69700"
+  count: "2"
+  apiKey: "8uEnYKe1"
+  typeObjet: "RESTAURATION"
+  content-type: "application/json"
 
 postgresql:
   database: "data_quality"
@@ -19,22 +19,22 @@ postgresql:
   column: "results"
   user: "postgres"
   password: "secret"
-  host: "127.0.0.1"
+  host: "db"
   port: "5432"
 
-backend:
-  criteria: "criteria_datatourisme_reg-pdl.json"
-
 #backend:
-#  criteria: "criteria_apidae_restauration.json"
-
-soda:
-  dataset_name: "reg_pdl"
-  data_source_name: "datatourisme"
-  scan_definition_name: "niveau_basique"
+#  criteria: "criteria_datatourisme_reg-pdl.json"
+#
+backend:
+  criteria: "criteria_apidae_restauration.json"
+#
 #soda:
-#  dataset_name: "apidae_restauration"
-#  data_source_name: "apidae"
+#  dataset_name: "reg_pdl"
+#  data_source_name: "datatourisme"
 #  scan_definition_name: "niveau_basique"
+soda:
+  dataset_name: "restauration"
+  data_source_name: "apidae"
+  scan_definition_name: "niveau_basique"
 
 
