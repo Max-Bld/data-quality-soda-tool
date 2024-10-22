@@ -7,6 +7,46 @@
 	},
 	"item": [
 		{
+			"name": "Get Variables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/get/variables",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"get",
+						"variables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Soda Checks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/get/checks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"get",
+						"checks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Change Variables (DATAtourisme)",
 			"request": {
 				"method": "POST",
@@ -130,28 +170,6 @@
 						"post",
 						"checks"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Variables",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Soda Checks",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
 				}
 			},
 			"response": []
