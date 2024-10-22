@@ -4,6 +4,7 @@ from db_query import get_last_results
 from os import getcwd
 from pathlib import Path
 import yaml
+import datetime
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
@@ -27,9 +28,9 @@ def welcome():
 @app.route('/run/scan', methods=['GET'])
 def run_soda_scan_results():
     import db
-
-    return f'''Soda scan finished!<br><br>   
-    You can go back to the <a href="/">home page</a> or go directly to the <a href="/get/results">latest results page</a>.'''
+    status = {"status": "success",
+         "datetime": datetime.datetime.now()}
+    return status
 
 @app.route('/get/results', methods=['GET'])
 def last_results():
