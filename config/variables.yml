@@ -19,7 +19,8 @@ postgresql:
   column: "results"
   user: "postgres"
   password: "secret"
-  host: "db"
+#  host: "db" # docker
+  host: "localhost"
   port: "5432"
 
 #backend:
