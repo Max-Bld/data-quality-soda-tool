@@ -88,3 +88,5 @@ result['logs'][2]['message'] = result['logs'][2]['message'].replace("'", "")
 j = json.dumps(result)
 
 print("Soda Scan finished.")
+
+del response
