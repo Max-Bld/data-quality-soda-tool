@@ -19,9 +19,10 @@ postgresql:
   column: "results"
   user: "postgres"
   password: "secret"
-#  host: "db" # docker
-  host: "localhost"
+  host: "db" # docker
+  #host: "localhost"
   port: "5432"
+  count: 2
 
 #backend:
 #  criteria: "criteria_datatourisme_reg-pdl.json"

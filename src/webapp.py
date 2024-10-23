@@ -35,7 +35,8 @@ def run_soda_scan_results():
 
 @app.route('/get/results', methods=['GET'])
 def last_results():
-    results = get_last_results()
+    count = request.args.get('count')
+    results = get_last_results(count=count)
     return results
 
 @app.route('/get/checks', methods=['GET'])

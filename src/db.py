@@ -3,7 +3,7 @@ from soda_pandas import get_soda_results
 from os import getcwd
 from pathlib import Path
 import yaml
-
+from elastic import send_to_elastic
 
 ## vars
 
@@ -73,4 +73,6 @@ print('Insert in PostgresSQL database finished.')
 cursor.close()
 conn.close()
 
-del j
+## Send to Elastic
+
+send_to_elastic()
