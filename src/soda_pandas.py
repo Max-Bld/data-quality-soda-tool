@@ -30,8 +30,8 @@ import io
 #
 # data = response
 #
-# with open(f'{parent_path}/criteria/{backend_vars["criteria"]}') as json_file:
-#     criteria = json.load(json_file)
+# with open(f'{parent_path}/mapping/{backend_vars["mapping"]}') as json_file:
+#     mapping = json.load(json_file)
 
 def get_soda_results(data, criteria, api_vars, soda_vars, parent_path):
 

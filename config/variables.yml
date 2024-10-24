@@ -25,10 +25,10 @@ postgresql:
   count: 2
 
 #backend:
-#  criteria: "criteria_datatourisme_reg-pdl.json"
+#  mapping: "criteria_datatourisme_reg-pdl.json"
 #
 backend:
-  criteria: "criteria_apidae_restauration.json"
+  mapping: "criteria_apidae_restauration.json"
 #
 #soda:
 #  dataset_name: "reg_pdl"

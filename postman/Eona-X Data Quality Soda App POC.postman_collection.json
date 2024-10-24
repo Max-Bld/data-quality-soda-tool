@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "api:\n  apiName: \"datatourisme\"\n  url: \"https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490\"\n  content-type: \"text/csv\"\n\npostgresql:\n  database: \"data_quality\"\n  table: \"soda_results\"\n  column: \"results\"\n  user: \"postgres\"\n  password: \"secret\"\n  host: \"db\"\n  port: \"5432\"\n\nbackend:\n  criteria: \"criteria_datatourisme_reg-pdl.json\"\n\nsoda:  \n  dataset_name: \"reg_pdl\"\n  data_source_name: \"datatourisme\"\n  scan_definition_name: \"niveau_basique\" \n",
+					"raw": "api:\n  apiName: \"datatourisme\"\n  url: \"https://www.data.gouv.fr/fr/datasets/r/56d437a7-eb0c-4c31-9138-539be94bc490\"\n  content-type: \"text/csv\"\n\npostgresql:\n  database: \"data_quality\"\n  table: \"soda_results\"\n  column: \"results\"\n  user: \"postgres\"\n  password: \"secret\"\n  host: \"{{db_host}}\"\n  port: \"5432\"\n\nbackend:\n  mapping: \"criteria_datatourisme_reg-pdl.json\"\n\nsoda:  \n  dataset_name: \"reg_pdl\"\n  data_source_name: \"datatourisme\"\n  scan_definition_name: \"niveau_basique\" \n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,13 +61,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://10.1.2.182:5000/post/variables",
+					"raw": "http://{{host}}:5000/post/variables",
 					"protocol": "http",
 					"host": [
-						"10",
-						"1",
-						"2",
-						"182"
+						"{{host}}"
 					],
 					"port": "5000",
 					"path": [
@@ -117,7 +114,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "api:\n  apiName: \"apidae\"\n  url: \"https://api.apidae-tourisme.cooking/api/v002/recherche/list-objets-touristiques\"\n  projectId: \"3628\"\n  searchId: \"69700\"\n  count: \"20\"\n  apiKey: \"8uEnYKe1\"\n  typeObjet: \"RESTAURATION\"\n  content-type: \"application/json\"\n\npostgresql:\n  database: \"data_quality\"\n  table: \"soda_results\"\n  column: \"results\"\n  user: \"postgres\"\n  password: \"secret\"\n  host: \"db\"\n  port: \"5432\"\n\nbackend:\n  criteria: \"criteria_apidae_restauration.json\"\n\nsoda:\n  dataset_name: \"restauration\"\n  data_source_name: \"apidae\"\n  scan_definition_name: \"niveau_basique\"",
+					"raw": "api:\n  apiName: \"apidae\"\n  url: \"https://api.apidae-tourisme.cooking/api/v002/recherche/list-objets-touristiques\"\n  projectId: \"3628\"\n  searchId: \"69700\"\n  count: \"20\"\n  apiKey: \"8uEnYKe1\"\n  typeObjet: \"RESTAURATION\"\n  content-type: \"application/json\"\n\npostgresql:\n  database: \"data_quality\"\n  table: \"soda_results\"\n  column: \"results\"\n  user: \"postgres\"\n  password: \"secret\"\n  host: \"{{db_host}}\"\n  port: \"5432\"\n\nbackend:\n  mapping: \"criteria_apidae_restauration.json\"\n\nsoda:\n  dataset_name: \"restauration\"\n  data_source_name: \"apidae\"\n  scan_definition_name: \"niveau_basique\"",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -174,13 +171,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://10.1.2.182:5000/run/scan",
+					"raw": "http://{{host}}:5000/run/scan",
 					"protocol": "http",
 					"host": [
-						"10",
-						"1",
-						"2",
-						"182"
+						"{{host}}"
 					],
 					"port": "5000",
 					"path": [
